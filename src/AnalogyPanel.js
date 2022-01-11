@@ -19,13 +19,13 @@ export default class AnalogyPanel extends React.Component {
     render() {
         return (<div>
             <span>
-                <Well onDrop={update('a').bind(this)}/>
+                <Well latent={this.state.machine.inputs.a} onDrop={update('a').bind(this)}/>
                 :
-                <Well onDrop={update('b').bind(this)}/>
+                <Well latent={this.state.machine.inputs.b} onDrop={update('b').bind(this)}/>
                 ::
-                <Well onDrop={update('c').bind(this)}/>
+                <Well latent={this.state.machine.inputs.c} onDrop={update('c').bind(this)}/>
                 :
-                <Well readonly latent={this.state.machine.output} />
+                <Well latent={this.state.machine.output} readonly />
             </span>
         </div>)
     }    

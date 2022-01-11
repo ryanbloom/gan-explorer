@@ -17,10 +17,10 @@ export default class VariantsPanel extends React.Component {
     }
     render() {
         const outputs = this.state.machine.output.map(
-            (x, idx) => <Well readonly key={idx} latent={x} />)
+            (x, idx) => <Well key={idx} latent={x} readonly />)
         return (<div>
             <span>
-                <Well onDrop={update('a').bind(this)}/>
+                <Well latent={this.state.machine.inputs.a} onDrop={update('a').bind(this)}/>
                 →
                 <span>{outputs}</span>
             </span>

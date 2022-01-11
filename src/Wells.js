@@ -1,17 +1,21 @@
 import React from "react"
 import { DragContext } from "./context"
-import {latentURL} from "./api"
+import { latentURL } from "./api"
 
 class Well extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            latent: false,
             hover: false
         }
     }
 
     render() {
+        function handleMouseDown(e) {
+            if (this.props.latent) {
+                this.context.startDrag(e, this.props.latent)
+            }
+        }
         function handleMouseOver() {
             if (!this.context.draggedImage) {
                 return
@@ -30,18 +34,15 @@ class Well extends React.Component {
                 return
             }
             let latent = this.context.draggedImage.latent
-            this.setState({
-                latent: latent
-            })
             if (this.props.onDrop) {
                 this.props.onDrop(latent)
             }
             this.context.finishDrag()
         }
         let inside
-        let latent = this.props.latent || this.state.latent
+        let latent = this.props.latent
         if (latent) {
-            inside = <img src={latentURL(latent)} />
+            inside = <img src={latentURL(latent)} draggable="false" />
         } else {
             inside = <div></div>
         }
@@ -50,7 +51,9 @@ class Well extends React.Component {
             cn += " highlighted"
         }
         return (
-            <div className={cn} onMouseUp={handleMouseUp.bind(this)}
+            <div className={cn}
+                onMouseDown={handleMouseDown.bind(this)}
+                onMouseUp={handleMouseUp.bind(this)}
                 onMouseOver={handleMouseOver.bind(this)}
                 onMouseOut={handleMouseOut.bind(this)}>
                     {inside}

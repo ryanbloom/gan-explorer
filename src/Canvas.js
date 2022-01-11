@@ -93,6 +93,26 @@ export default class Canvas extends React.Component {
 
         const val = {
             draggedImage: this.state.draggedImage,
+            startDrag: (e, latent) => {
+                const rect = e.target.getBoundingClientRect()
+                const pos = {
+                    x: rect.left,
+                    y: rect.top
+                }
+
+                let images = this.state.images
+                let newImage = imageForLatent(latent)
+                newImage.pos = pos
+                images.push(newImage)
+                this.setState({
+                    images: images,
+                    draggedImage: newImage,
+                    cursorPos: {
+                        x: e.clientX,
+                        y: e.clientY
+                    }
+                })
+            },
             finishDrag: () => {
                 this.setState({
                     draggedImage: false

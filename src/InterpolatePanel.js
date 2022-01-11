@@ -18,9 +18,9 @@ export default class InterpolatePanel extends React.Component {
     render() {
         return (<div>
             <span>
-                A: <Well onDrop={update('a').bind(this)}/>
-                B: <Well onDrop={update('b').bind(this)}/>
-                Out: <Well readonly latent={this.state.machine.output} />
+                A: <Well latent={this.state.machine.inputs.a} onDrop={update('a').bind(this)}/>
+                B: <Well latent={this.state.machine.inputs.b} onDrop={update('b').bind(this)}/>
+                Out: <Well latent={this.state.machine.output} readonly />
             </span>
         </div>)
     }    
