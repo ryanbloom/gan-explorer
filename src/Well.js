@@ -51,6 +51,9 @@ class Well extends React.Component {
         if (this.state.hover && !this.props.readonly) {
             cn += " highlighted"
         }
+        if (this.props.latent) {
+            cn += " full"
+        }
         return (
             <div className={cn}
                 onMouseDown={this.handleMouseDown.bind(this)}

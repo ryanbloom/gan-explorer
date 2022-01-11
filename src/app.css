@@ -2,11 +2,16 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
 }
 
+html, body, #app, .canvas {
+    width: 100%;
+    height: 100%;
+}
+
 .tab {
     padding: 8px;
 }
 
-.well, img {
+.well, .well img, .image {
     width: 256px;
     height: 256px;
     border-radius: 4px;
@@ -24,4 +29,13 @@ body {
 
 img.selected {
     outline: solid black 2px;
+}
+
+/* Dragging cursors */
+.well.full, .image {
+    cursor: grab;
+}
+
+.dragging, .dragging * {
+    cursor: grabbing;
 }

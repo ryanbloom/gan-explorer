@@ -14,7 +14,7 @@ export default class Image extends React.Component {
             left: this.props.pos.x + "px",
             top: this.props.pos.y + "px"
         }
-        let cn = this.props.selected ? "selected" : ""
+        let cn = this.props.selected ? "image selected" : "image"
         return (
             <img src={latentURL(this.props.latent)} className={cn} style={st}
                 onMouseDown={this.props.onMouseDown}

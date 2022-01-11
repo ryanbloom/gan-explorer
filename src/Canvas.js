@@ -124,6 +124,7 @@ export default class Canvas extends React.Component {
                 this.setState({
                     images: images,
                     draggedImage: newImage,
+                    selectedImage: newImage,
                     cursorPos: {
                         x: e.clientX,
                         y: e.clientY
@@ -136,9 +137,13 @@ export default class Canvas extends React.Component {
                 })
             }
         }
+        let cn = "canvas"
+        if (this.state.draggedImage) {
+            cn += " dragging"
+        }
         return (
             <DragContext.Provider value={val}>
-                <div style={{width: "100%", height: "100%"}}
+                <div className={cn}
                     onMouseMove={this.handleMouseMove.bind(this)}
                     onMouseUp={this.handleMouseUp.bind(this)}>
                     <Panel />

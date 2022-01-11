@@ -4,8 +4,6 @@ import "./app.css"
 
 export function App() {
       return (
-            <div style={{height:"100%"}}>
-                  <Canvas />
-            </div>
+            <Canvas />
       );
 }
