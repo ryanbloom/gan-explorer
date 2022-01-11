@@ -1,5 +1,6 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    user-select: none;
 }
 
 html, body, #app, .canvas {

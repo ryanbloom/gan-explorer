@@ -19,7 +19,7 @@ export default class Image extends React.Component {
         return (
             <img src={latentURL(this.props.latent)} className={cn} style={st}
                 onMouseDown={this.props.onMouseDown}
-                draggable="false"
+                draggable="false" onDragStart={e => {e.preventDefault()}}
                 />
         )
     }

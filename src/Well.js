@@ -42,7 +42,7 @@ class Well extends React.Component {
         let inside
         let latent = this.props.latent
         if (latent) {
-            inside = <img src={latentURL(latent)} draggable="false" />
+            inside = <img src={latentURL(latent)} draggable="false" onDragStart={e => {e.preventDefault()}} />
         } else {
             inside = <div></div>
         }
