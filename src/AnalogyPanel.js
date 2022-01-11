@@ -4,28 +4,24 @@ import { update, analogy } from "./operations"
 export default class AnalogyPanel extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            machine: {
-                inputs: {
-                    a: undefined,
-                    b: undefined,
-                    c: undefined
-                },
-                operation: analogy,
-                output: undefined,
-            }
+    }
+
+    drop(name) {
+        return function(z) {
+            this.props.onDrop(name, z)
         }
     }
+    
     render() {
         return (<div>
             <span>
-                <Well latent={this.state.machine.inputs.a} onDrop={update('a').bind(this)}/>
+                <Well latent={this.props.machine.inputs.a} onDrop={this.drop('a').bind(this)} />
                 :
-                <Well latent={this.state.machine.inputs.b} onDrop={update('b').bind(this)}/>
+                <Well latent={this.props.machine.inputs.b} onDrop={this.drop('b').bind(this)} />
                 ::
-                <Well latent={this.state.machine.inputs.c} onDrop={update('c').bind(this)}/>
+                <Well latent={this.props.machine.inputs.c} onDrop={this.drop('c').bind(this)} />
                 :
-                <Well latent={this.state.machine.output} readonly />
+                <Well latent={this.props.machine.output} readonly />
             </span>
         </div>)
     }    

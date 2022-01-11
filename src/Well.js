@@ -32,9 +32,8 @@ class Well extends React.Component {
         if (!this.context.draggedImage || this.props.readonly) {
             return
         }
-        let latent = this.context.draggedImage.latent
         if (this.props.onDrop) {
-            this.props.onDrop(latent)
+            this.props.onDrop(this.context.draggedImage.latent)
         }
         this.context.finishDrag()
     }

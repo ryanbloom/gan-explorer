@@ -5,8 +5,10 @@ let variantDistance = 10.0
 
 let dz = 512
 
-function updateMachine(m, key, val) {
-    m.inputs[key] = val
+export function updateMachine(m, key, val) {
+    if (key) {
+        m.inputs[key] = val
+    }
     for (let key in m.inputs) {
         if (!m.inputs[key]) {
             return m
@@ -14,14 +16,6 @@ function updateMachine(m, key, val) {
     }
     m.output = m.operation(m)
     return m
-}
-
-export function update(name) {
-    return function(z) {
-        this.setState({
-            machine: updateMachine(this.state.machine, name, z)
-        })
-    }
 }
 
 // Adapted from https://stackoverflow.com/a/36481059
@@ -38,6 +32,14 @@ export function randomLatent() {
         arr[i] = gaussian()
     }
     return arr
+}
+
+export function random(m) {
+    let output = new Array(nRandom)
+    for (let i = 0; i < nRandom; i++) {
+        output[i] = randomLatent()
+    }
+    return output
 }
 
 const zeroLatent = new Array(dz).fill(0)

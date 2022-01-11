@@ -1,35 +1,23 @@
 import React from "react"
 import { Well } from "./Well"
-import { update, variants, nVariants } from "./operations"
 
 export default class VariantsPanel extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            machine: {
-                inputs: {
-                    a: undefined
-                },
-                operation: variants,
-                output: new Array(nVariants).fill(undefined),
-            }
+    drop(name) {
+        return function(z) {
+            this.props.onDrop(name, z)
         }
     }
 
     rerun() {
-        let m = this.state.machine
-        m.output = variants(m)
-        this.setState({
-            machine: m
-        })
+        this.props.onDrop()
     }
 
     render() {
-        const outputs = this.state.machine.output.map(
+        const outputs = this.props.machine.output.map(
             (x, idx) => <Well key={idx} latent={x} readonly />)
         return (<div>
             <span>
-                <Well latent={this.state.machine.inputs.a} onDrop={update('a').bind(this)}/>
+                <Well latent={this.props.machine.inputs.a} onDrop={this.drop('a').bind(this)}/>
                 <button onClick={this.rerun.bind(this)}>Generate</button>
                 →
                 <span>{outputs}</span>

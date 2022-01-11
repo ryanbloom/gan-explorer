@@ -134,8 +134,11 @@ export default class Canvas extends React.Component {
                 })
             },
             finishDrag: () => {
+                let images = this.state.images
+                delete images[this.state.draggedImage.id]
                 this.setState({
-                    draggedImage: false
+                    draggedImage: false,
+                    images: images
                 })
             }
         }

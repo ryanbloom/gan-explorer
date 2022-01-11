@@ -1,26 +1,18 @@
 import React from "react"
 import { Well } from "./Well"
-import { update, interpolate } from "./operations"
 export default class InterpolatePanel extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            machine: {
-                inputs: {
-                    a: undefined,
-                    b: undefined
-                },
-                operation: interpolate,
-                output: undefined,
-            }
+    drop(name) {
+        return function(z) {
+            this.props.onDrop(name, z)
         }
     }
+
     render() {
         return (<div>
             <span>
-                A: <Well latent={this.state.machine.inputs.a} onDrop={update('a').bind(this)}/>
-                B: <Well latent={this.state.machine.inputs.b} onDrop={update('b').bind(this)}/>
-                Out: <Well latent={this.state.machine.output} readonly />
+                A: <Well latent={this.props.machine.inputs.a} onDrop={this.drop('a').bind(this)}/>
+                B: <Well latent={this.props.machine.inputs.b} onDrop={this.drop('b').bind(this)}/>
+                Out: <Well latent={this.props.machine.output} readonly />
             </span>
         </div>)
     }    
