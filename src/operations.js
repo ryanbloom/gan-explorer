@@ -1,3 +1,10 @@
+// UI settings
+export let nVariants = 3
+export let nRandom = 3
+let variantDistance = 10.0
+
+let dz = 512
+
 function updateMachine(m, key, val) {
     m.inputs[key] = val
     for (let key in m.inputs) {
@@ -16,6 +23,24 @@ export function update(name) {
         })
     }
 }
+
+// Adapted from https://stackoverflow.com/a/36481059
+function gaussian() {
+    let u = 0, v = 0
+    while(u === 0) u = Math.random() //Converting [0,1) to (0,1)
+    while(v === 0) v = Math.random()
+    return Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v )
+}
+
+export function randomLatent() {
+    let arr = new Array(dz)
+    for (let i = 0; i < dz; i++) {
+        arr[i] = gaussian()
+    }
+    return arr
+}
+
+const zeroLatent = new Array(dz).fill(0)
 
 export function interpolate(m) {
     const args = m.inputs
@@ -41,8 +66,6 @@ export function analogy(m) {
     return d
 }
 
-export let nVariants = 3
-let variantDistance = 10.0
 export function variants(m) {
     const a = m.inputs.a
     let outputs = []

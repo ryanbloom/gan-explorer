@@ -1,6 +1,6 @@
 import React from "react"
-import {Well} from "./Wells"
-import {update, interpolate} from "./operations"
+import { Well } from "./Well"
+import { update, interpolate } from "./operations"
 export default class InterpolatePanel extends React.Component {
     constructor(props) {
         super(props)

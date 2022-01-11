@@ -1,6 +1,6 @@
 import React from "react"
-import {Well} from "./Wells"
-import {update, analogy} from "./operations"
+import { Well } from "./Well"
+import { update, analogy } from "./operations"
 export default class AnalogyPanel extends React.Component {
     constructor(props) {
         super(props)

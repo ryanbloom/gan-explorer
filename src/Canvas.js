@@ -5,24 +5,6 @@ import Panel from "./Panel"
 
 const dz = 512
 
-// Adapted from https://stackoverflow.com/a/36481059
-function gaussian() {
-    let u = 0, v = 0
-    while(u === 0) u = Math.random() //Converting [0,1) to (0,1)
-    while(v === 0) v = Math.random()
-    return Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v )
-}
-
-function randomLatent() {
-    let arr = new Array(dz)
-    for (let i = 0; i < dz; i++) {
-        arr[i] = gaussian()
-    }
-    return arr
-}
-
-const zeroLatent = new Array(dz).fill(0)
-
 let id = -1
 function imageForLatent(z) {
     id += 1
@@ -45,9 +27,7 @@ export default class Canvas extends React.Component {
             cursorPos: {
                 x: 0, y: 0
             },
-            images: {
-                0: imageForLatent(randomLatent())
-            }
+            images: {}
         }
         this.handleKeyDown = this.handleKeyDown.bind(this)
     }
