@@ -1,5 +1,6 @@
 import React from "react";
 import InterpolatePanel from "./InterpolatePanel";
+import AnalogyPanel from "./AnalogyPanel";
 
 export default class Panel extends React.Component {
     constructor(props) {
@@ -27,6 +28,8 @@ export default class Panel extends React.Component {
         let activeComponent = <div>Nothing active</div>
         if (this.state.activePanel == "Interpolate") {
             activeComponent = <InterpolatePanel />
+        } else if (this.state.activePanel == "Analogy") {
+            activeComponent = <AnalogyPanel />
         }
 
         return (

@@ -1,6 +1,6 @@
 import React from "react"
 import {Well} from "./Wells"
-import {updateMachine, interpolate} from "./operations"
+import {update, interpolate} from "./operations"
 export default class InterpolatePanel extends React.Component {
     constructor(props) {
         super(props)
@@ -16,19 +16,11 @@ export default class InterpolatePanel extends React.Component {
         }
     }
     render() {
-        function update(name) {
-            return function(z) {
-                this.setState({
-                    machine: updateMachine(this.state.machine, name, z)
-                })
-            }
-        }
-        
         return (<div>
             <span>
                 A: <Well onDrop={update('a').bind(this)}/>
                 B: <Well onDrop={update('b').bind(this)}/>
-                Out: <Well readonly="true" latent={this.state.machine.output} />
+                Out: <Well readonly latent={this.state.machine.output} />
             </span>
         </div>)
     }    
