@@ -10,35 +10,36 @@ class Well extends React.Component {
         }
     }
 
+    handleMouseDown(e) {
+        if (this.props.latent) {
+            this.context.startDrag(e, this.props.latent)
+        }
+    }
+    handleMouseOver() {
+        if (!this.context.draggedImage) {
+            return
+        }
+        this.setState({
+            hover: true
+        })
+    }
+    handleMouseOut() {
+        this.setState({
+            hover: false
+        })
+    }
+    handleMouseUp() {
+        if (!this.context.draggedImage || this.props.readonly) {
+            return
+        }
+        let latent = this.context.draggedImage.latent
+        if (this.props.onDrop) {
+            this.props.onDrop(latent)
+        }
+        this.context.finishDrag()
+    }
+
     render() {
-        function handleMouseDown(e) {
-            if (this.props.latent) {
-                this.context.startDrag(e, this.props.latent)
-            }
-        }
-        function handleMouseOver() {
-            if (!this.context.draggedImage) {
-                return
-            }
-            this.setState({
-                hover: true
-            })
-        }
-        function handleMouseOut() {
-            this.setState({
-                hover: false
-            })
-        }
-        function handleMouseUp() {
-            if (!this.context.draggedImage || this.props.readonly) {
-                return
-            }
-            let latent = this.context.draggedImage.latent
-            if (this.props.onDrop) {
-                this.props.onDrop(latent)
-            }
-            this.context.finishDrag()
-        }
         let inside
         let latent = this.props.latent
         if (latent) {
@@ -52,10 +53,12 @@ class Well extends React.Component {
         }
         return (
             <div className={cn}
-                onMouseDown={handleMouseDown.bind(this)}
-                onMouseUp={handleMouseUp.bind(this)}
-                onMouseOver={handleMouseOver.bind(this)}
-                onMouseOut={handleMouseOut.bind(this)}>
+                onMouseDown={this.handleMouseDown.bind(this)}
+                onMouseUp={this.handleMouseUp.bind(this)}
+                onMouseOver={this.handleMouseOver.bind(this)}
+                onMouseOut={this.handleMouseOut.bind(this)}
+                
+                >
                     {inside}
                 </div>
         )
@@ -63,4 +66,4 @@ class Well extends React.Component {
 }
 Well.contextType = DragContext
 
-export {Well}
+export { Well }

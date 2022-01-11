@@ -42,7 +42,7 @@ export function analogy(m) {
 }
 
 export let nVariants = 3
-let variantDistance = 3.0
+let variantDistance = 10.0
 export function variants(m) {
     const a = m.inputs.a
     let outputs = []
@@ -50,7 +50,7 @@ export function variants(m) {
         let delta = new Array(a.length)
         let norm = 0
         for (let j = 0; j < a.length; j++) {
-            let rand = Math.random()
+            let rand = Math.random() - 0.5
             delta[j] = rand
             norm += rand*rand
         }
