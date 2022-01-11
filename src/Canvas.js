@@ -5,12 +5,19 @@ import Panel from "./Panel"
 
 const dz = 512
 
+let topZIndex = 0
+function nextZIndex() {
+    topZIndex += 1
+    return topZIndex
+}
+
 let id = -1
 function imageForLatent(z) {
     id += 1
     return {
         latent: z,
         id: id,
+        zIndex: nextZIndex(),
         pos: {
             x: 0,
             y: 0
@@ -42,6 +49,7 @@ export default class Canvas extends React.Component {
 
     mouseDownHandler(im) {
         return function(e) {
+            im.zIndex = nextZIndex()
             this.setState({
                 draggedImage: im,
                 selectedImage: im,
@@ -96,16 +104,10 @@ export default class Canvas extends React.Component {
 
     render() {
         const imgs = Object.values(this.state.images).map(im => {
-            let thisOne = false
-            if (this.state.draggedImage) {
-                if (this.state.draggedImage.id == im.id) {
-                    thisOne = true
-                }
-            }
-            return <Image latent={im.latent} key={im.id} pos={im.pos}
+            return <Image latent={im.latent} key={im.id} pos={im.pos} zIndex={im.zIndex}
                 onMouseDown={this.mouseDownHandler(im).bind(this)}
                 selected={this.state.selectedImage.id == im.id}
-                mouseIsDown={thisOne}/>
+                mouseIsDown={this.state.draggedImage.id == im.id}/>
         })
 
         const val = {

@@ -12,7 +12,8 @@ export default class Image extends React.Component {
             position: "absolute",
             pointerEvents: this.props.mouseIsDown ? "none" : "auto",
             left: this.props.pos.x + "px",
-            top: this.props.pos.y + "px"
+            top: this.props.pos.y + "px",
+            zIndex: this.props.zIndex
         }
         let cn = this.props.selected ? "image selected" : "image"
         return (
