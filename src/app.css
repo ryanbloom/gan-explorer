@@ -14,8 +14,9 @@ body {
 .well {
     background-color: #bbb;
     display: inline-block;
+    margin: 0 8px;
 }
 
 .well.highlighted {
-    background: #ddd;
+    opacity: 60%;
 }

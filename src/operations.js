@@ -38,6 +38,28 @@ export function analogy(m) {
     for (let i = 0; i < args.a.length; i++) {
         d[i] = args.c[i] + (args.b[i] - args.a[i])
     }
-    console.log(d)
     return d
+}
+
+export let nVariants = 3
+let variantDistance = 3.0
+export function variants(m) {
+    const a = m.inputs.a
+    let outputs = []
+    for (let i = 0; i < nVariants; i++) {
+        let delta = new Array(a.length)
+        let norm = 0
+        for (let j = 0; j < a.length; j++) {
+            let rand = Math.random()
+            delta[j] = rand
+            norm += rand*rand
+        }
+        norm = Math.sqrt(norm)
+        let v = new Array(a.length)
+        for (let j = 0; j < a.length; j++) {
+            v[j] = a[j] + (delta[j]/norm*variantDistance)
+        }
+        outputs.push(v)
+    }
+    return outputs
 }
