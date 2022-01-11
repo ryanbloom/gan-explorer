@@ -2,63 +2,62 @@ import React from "react"
 import { DragContext } from "./context"
 import {latentURL} from "./api"
 
-const wellStyle = {
-    width: "100px",
-    height: "100px",
-    backgroundColor: "#aaa",
-    display: "inline-block"
-}
-
-class InputWell extends React.Component {
+class Well extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            latent: false
+            latent: false,
+            hover: false
         }
     }
 
     render() {
-        function handleMouseUp() {
+        function handleMouseOver() {
             if (!this.context.draggedImage) {
+                return
+            }
+            this.setState({
+                hover: true
+            })
+        }
+        function handleMouseOut() {
+            this.setState({
+                hover: false
+            })
+        }
+        function handleMouseUp() {
+            if (!this.context.draggedImage || this.props.readonly) {
                 return
             }
             let latent = this.context.draggedImage.latent
             this.setState({
                 latent: latent
             })
+            if (this.props.onDrop) {
+                this.props.onDrop(latent)
+            }
             this.context.finishDrag()
         }
         let inside
-        if (this.state.latent) {
-            inside = <img src={latentURL(this.state.latent)} />
+        let latent = this.props.latent || this.state.latent
+        if (latent) {
+            inside = <img src={latentURL(latent)} />
         } else {
             inside = <div></div>
         }
+        let cn = "well"
+        if (this.state.hover && !this.props.readonly) {
+            cn += " highlighted"
+        }
         return (
-            <div style={wellStyle} onMouseUp={handleMouseUp.bind(this)}>{inside}</div>
+            <div className={cn} onMouseUp={handleMouseUp.bind(this)}
+                onMouseOver={handleMouseOver.bind(this)}
+                onMouseOut={handleMouseOut.bind(this)}>
+                    {inside}
+                </div>
         )
     }
 }
-InputWell.contextType = DragContext
+Well.contextType = DragContext
 
-class OutputWell extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            latent: false
-        }
-    }
-    render() {
-        let inside
-        if (this.state.latent) {
-            inside = <img src={latentURL(this.state.latent)} />
-        } else {
-            inside = <div></div>
-        }
-        return (
-            <div style={wellStyle}>{inside}</div>
-        )
-    }
-}
-
-export {InputWell, OutputWell}
+export {Well}

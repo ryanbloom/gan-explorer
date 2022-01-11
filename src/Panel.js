@@ -18,9 +18,9 @@ export default class Panel extends React.Component {
         }
         const tabs = panelNames.map(name => {
             if (name == this.state.activePanel) {
-                return <span key={name}><span>{name}</span></span>
+                return <span className="tab" key={name}><span>{name}</span></span>
             } else {
-                return <span key={name}><a href="#" onClick={(_ => select(name, this)).bind(this)}>{name}</a></span>
+                return <span className="tab" key={name}><a href="#" onClick={(_ => select(name, this)).bind(this)}>{name}</a></span>
             }
         })
 

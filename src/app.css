@@ -1,0 +1,21 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+}
+
+.tab {
+    padding: 8px;
+}
+
+.well, img {
+    width: 256px;
+    height: 256px;
+}
+
+.well {
+    background-color: #bbb;
+    display: inline-block;
+}
+
+.well.highlighted {
+    background: #ddd;
+}

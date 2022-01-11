@@ -3,8 +3,8 @@ import { DragContext } from "./context"
 import Image from "./Image"
 import Panel from "./Panel"
 
-const someLatent = new Array(512).fill(0)
-const latent2 = new Array(512).fill(0.1)
+const someLatent = new Array(512).fill(-0.3)
+const latent2 = new Array(512).fill(0.3)
 
 let id = -1
 function imageForLatent(z) {
@@ -91,9 +91,6 @@ export default class Canvas extends React.Component {
         }
         )
 
-        function handleWellHover() {
-
-        }
         const val = {
             draggedImage: this.state.draggedImage,
             finishDrag: () => {
@@ -107,7 +104,7 @@ export default class Canvas extends React.Component {
                 <div style={{width: "100%", height: "100%"}}
                     onMouseMove={handleMouseMove.bind(this)}
                     onMouseUp={handleMouseUp.bind(this)}>
-                    <Panel onHover={handleWellHover.bind(this)}/>
+                    <Panel />
                     {imgs}
                 </div>
             </DragContext.Provider>
