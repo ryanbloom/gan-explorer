@@ -1,6 +1,9 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
     user-select: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
 }
 
 html, body, #app, .canvas {
@@ -8,24 +11,111 @@ html, body, #app, .canvas {
     height: 100%;
 }
 
-.tab {
+/* Buttons */
+
+button {
+    border: none;
+    background-color: #eee;
     padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #ddd;
+}
+button:active {
+    background-color: #ccc
+}
+button.disabled {
+    background-color: #eee;
+    cursor: not-allowed;
+}
+.icon-button {
+    height: 40px;
+}
+
+/* Top panel */
+
+#tabs {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    margin-bottom: 8px;
+    background: #eee;
+}
+
+.tab a, .tab span {
+    padding: 16px;
+    display: block;
+}
+
+.tab {
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+.tab.active {
+    background: white;
+}
+
+.tab.inactive:hover {
+    background: #ddd;
+}
+
+.tab.inactive:active {
+    background: #ccc;
+}
+
+.tab a {
+    text-decoration: none;
+    color: black;
+}
+
+.panel-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 32px;
+}
+
+/* Images and wells */
+
+.well img {
+    position: relative;
+    top: 0;
+    left: 0;
 }
 
 .well, .well img, .image {
     width: 256px;
     height: 256px;
-    border-radius: 4px;
+    border-radius: 8px;
 }
 
 .well {
-    background-color: #bbb;
+    background-color: #eee;
     display: inline-block;
+    position: relative;
     margin: 0 8px;
+    flex-shrink: 0;
 }
 
-.well.highlighted {
+.well.full.highlighted {
     opacity: 60%;
+}
+
+.well.highlighted .well-placeholder {
+    background-color: white;
+}
+
+.well-placeholder {
+    width: calc(256px * 0.75);
+    height: calc(256px * 0.75);
+    position: absolute;
+    top: calc(256px * 0.125);
+    left: calc(256px * 0.125);
+    box-sizing: border-box;
+    border: solid white 10px;
+    border-radius: 6px;
 }
 
 img.selected {
@@ -33,6 +123,7 @@ img.selected {
 }
 
 /* Dragging cursors */
+
 .well.full, .image {
     cursor: grab;
 }

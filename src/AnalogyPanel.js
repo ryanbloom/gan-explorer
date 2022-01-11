@@ -14,7 +14,7 @@ export default class AnalogyPanel extends React.Component {
     
     render() {
         return (<div>
-            <span>
+            <span className="panel-row">
                 <Well latent={this.props.machine.inputs.a} onDrop={this.drop('a').bind(this)} />
                 :
                 <Well latent={this.props.machine.inputs.b} onDrop={this.drop('b').bind(this)} />

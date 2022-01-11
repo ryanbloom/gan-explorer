@@ -15,12 +15,18 @@ export default class VariantsPanel extends React.Component {
     render() {
         const outputs = this.props.machine.output.map(
             (x, idx) => <Well key={idx} latent={x} readonly />)
+
+        let buttonClass = this.props.machine.output[0] == undefined ? "icon-button disabled" : "icon-button"
         return (<div>
-            <span>
+            <span className="panel-row">
                 <Well latent={this.props.machine.inputs.a} onDrop={this.drop('a').bind(this)}/>
-                <button onClick={this.rerun.bind(this)}>Generate</button>
                 →
-                <span>{outputs}</span>
+                {outputs}
+                <button className={buttonClass} onClick={this.rerun.bind(this)}>
+                    <span className="material-icons-round">
+                        replay
+                    </span>
+                </button>
             </span>
         </div>)
     }    

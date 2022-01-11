@@ -3,7 +3,7 @@ import InterpolatePanel from "./InterpolatePanel";
 import AnalogyPanel from "./AnalogyPanel";
 import VariantsPanel from "./VariantsPanel";
 import RandomPanel from "./RandomPanel";
-import { nVariants, nRandom, updateMachine, interpolate, analogy, variants, random } from "./operations"
+import { nVariants, updateMachine, interpolate, analogy, variants, random } from "./operations"
 
 export default class Panel extends React.Component {
     constructor(props) {
@@ -37,7 +37,7 @@ export default class Panel extends React.Component {
             Random: {
                 inputs: {},
                 operation: random,
-                output: new Array(nRandom).fill(undefined),
+                output: random(),
             }
         }
     }
@@ -59,13 +59,13 @@ export default class Panel extends React.Component {
         }
         const tabs = panelNames.map(name => {
             if (name == this.state.activePanel) {
-                return <span className="tab" key={name}><span>{name}</span></span>
+                return <div className="tab active" key={name} onClick={(_ => select("", this)).bind(this)}><span>{name}</span></div>
             } else {
-                return <span className="tab" key={name}><a href="#" onClick={(_ => select(name, this)).bind(this)}>{name}</a></span>
+                return <div className="tab inactive" key={name}><a href="#" onClick={(_ => select(name, this)).bind(this)}>{name}</a></div>
             }
         })
 
-        let activeComponent = <div>Nothing active</div>
+        let activeComponent = <div></div>
         if (this.state.activePanel == "Interpolate") {
             activeComponent = <InterpolatePanel machine={this.state.Interpolate} onDrop={this.dropHandler("Interpolate").bind(this)} />
         } else if (this.state.activePanel == "Analogy") {
