@@ -49,6 +49,10 @@ export default class Canvas extends React.Component {
 
     mouseDownHandler(im) {
         return function(e) {
+            if (e.button == 2) {
+                // Right clicks shouldn't initiate a drag
+                return
+            }
             im.zIndex = nextZIndex()
             this.setState({
                 draggedImage: im,
@@ -70,7 +74,6 @@ export default class Canvas extends React.Component {
     
     handleMouseMove(e) {
         // TODO: make this more efficient
-        // FIXME: not called if the cursor drags outside the image boundary
         let im = this.state.draggedImage
         if (!im) {
             return

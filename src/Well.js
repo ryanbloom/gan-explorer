@@ -11,6 +11,10 @@ class Well extends React.Component {
     }
 
     handleMouseDown(e) {
+        if (e.button == 2) {
+            // Right clicks shouldn't initiate a drag
+            return
+        }
         if (this.props.latent) {
             this.context.startDrag(e, this.props.latent)
         }
