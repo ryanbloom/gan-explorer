@@ -1,0 +1,17 @@
+anyio
+asgiref
+certifi
+charset-normalizer
+click
+h11
+idna
+numpy
+Pillow
+requests
+scipy
+sniffio
+starlette
+torch
+typing-extensions
+urllib3
+uvicorn

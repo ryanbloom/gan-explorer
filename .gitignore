@@ -3,3 +3,8 @@ dist
 .parcel-cache
 __pycache__
 *.ipynb
+env
+
+stylegan2
+models/*.pkl
+models/*.pt
