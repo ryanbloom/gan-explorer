@@ -11,70 +11,14 @@ html, body, #app, .canvas {
     height: 100%;
 }
 
-/* Buttons */
-
-button {
-    border: none;
-    background-color: #eee;
-    padding: 8px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-button:hover {
-    background-color: #ddd;
-}
-button:active {
-    background-color: #ccc
-}
-button.disabled {
-    background-color: #eee;
-    cursor: not-allowed;
-}
-.icon-button {
-    height: 40px;
-}
-
 /* Top panel */
-
-#tabs {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    margin-bottom: 8px;
-    background: #eee;
-}
-
-.tab a, .tab span {
-    padding: 16px;
-    display: block;
-}
-
-.tab {
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
-}
-.tab.active {
-    background: white;
-}
-
-.tab.inactive:hover {
-    background: #ddd;
-}
-
-.tab.inactive:active {
-    background: #ccc;
-}
-
-.tab a {
-    text-decoration: none;
-    color: black;
-}
 
 .panel-row {
     display: flex;
     flex-direction: row;
     align-items: center;
     font-size: 32px;
+    color: rgba(0, 0, 0, 0.54);
 }
 
 /* Images and wells */
@@ -95,7 +39,7 @@ button.disabled {
     background-color: #eee;
     display: inline-block;
     position: relative;
-    margin: 0 8px;
+    margin: 8px;
     flex-shrink: 0;
 }
 

@@ -1,4 +1,6 @@
 import React from "react"
+import { Replay } from "@mui/icons-material"
+import { IconButton } from "@mui/material"
 import { Well } from "./Well"
 
 export default class RandomPanel extends React.Component {
@@ -12,9 +14,9 @@ export default class RandomPanel extends React.Component {
 
         return (<div className="panel-row">
             {outputs}
-            <button className="icon-button" onClick={this.rerun.bind(this)}>
-                <span className="material-icons-round">replay</span>
-            </button>
+            <IconButton onClick={this.rerun.bind(this)}>
+                <Replay />
+            </IconButton>
         </div>)
     }    
 }

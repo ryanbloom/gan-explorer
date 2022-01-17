@@ -39,7 +39,7 @@ export default class Canvas extends React.Component {
         this.handleKeyDown = this.handleKeyDown.bind(this)
     }
 
-    componentDidMount(){
+    componentDidMount() {
         document.addEventListener("keydown", this.handleKeyDown);
     }
 
@@ -48,7 +48,7 @@ export default class Canvas extends React.Component {
     }
 
     mouseDownHandler(im) {
-        return function(e) {
+        return function (e) {
             if (e.button == 2) {
                 // Right clicks shouldn't initiate a drag
                 return
@@ -71,7 +71,7 @@ export default class Canvas extends React.Component {
             draggedImage: false
         })
     }
-    
+
     handleMouseMove(e) {
         // TODO: make this more efficient
         let im = this.state.draggedImage
@@ -105,12 +105,20 @@ export default class Canvas extends React.Component {
         }
     }
 
+    reset(e) {
+        this.setState({
+            images: {},
+            selectedImage: false,
+            draggedImage: false
+        })
+    }
+
     render() {
         const imgs = Object.values(this.state.images).map(im => {
             return <Image latent={im.latent} key={im.id} pos={im.pos} zIndex={im.zIndex}
                 onMouseDown={this.mouseDownHandler(im).bind(this)}
                 selected={this.state.selectedImage.id == im.id}
-                mouseIsDown={this.state.draggedImage.id == im.id}/>
+                mouseIsDown={this.state.draggedImage.id == im.id} />
         })
 
         const val = {
@@ -154,7 +162,7 @@ export default class Canvas extends React.Component {
                 <div className={cn}
                     onMouseMove={this.handleMouseMove.bind(this)}
                     onMouseUp={this.handleMouseUp.bind(this)}>
-                    <Panel />
+                    <Panel selectedLatent={this.state.selectedImage.latent} onReset={this.reset.bind(this)} />
                     {imgs}
                 </div>
             </DragContext.Provider>
