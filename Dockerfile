@@ -7,7 +7,7 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY models ./models
-COPY stylegan2 ./stylegan2
+COPY stylegan2-ada-pytorch ./stylegan2-ada-pytorch
 COPY dist ./dist
 COPY server.py .
 

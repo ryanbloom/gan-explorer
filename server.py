@@ -17,7 +17,7 @@ import uvicorn
 # Models
 
 dz = 512
-sys.path.append("stylegan2")
+sys.path.append("stylegan2-ada-pytorch")
 filenames = os.listdir("models")
 models = {}
 

@@ -5,6 +5,6 @@ __pycache__
 *.ipynb
 env
 
-stylegan2
+stylegan2-ada-pytorch
 models/*.pkl
 models/*.pt

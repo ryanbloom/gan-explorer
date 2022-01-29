@@ -1,1 +1,1 @@
-This directory is for pickled PyTorch models to be served by `server.py`.
+Model (.pkl) files placed in this directory will be loaded and made available by `server.py`.
