@@ -7,11 +7,11 @@ This is a simple drag-and-drop web interface for generating images with GANs (ge
 * Interpolating between two images by averaging their latent vectors
 * Completing "image analogies" like A:B::C:D (the latent vector of D is calculated as `C+B-A`)
 
-A live demo is available [here](https://gan-explorer.ryan-bloom.com), using the FFHQ 256x256 model from NVIDIA ([download site](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/research/models/stylegan2/files)). You may have to wait a few moments for the container to start up.
+A live demo is available [here](https://gan-explorer.ryan-bloom.com); the model is from [ThisJustin-code/pretrained-gan-landscapes-256](https://github.com/ThisJustin-code/pretrained-gan-landscapes-256). You may have to wait a few moments for the container to start up.
 
 ## Development
 
-The backend is designed to be compatible with [stylegan2-ada-pytorch](https://github.com/NVlabs/stylegan2-ada-pytorch). It should be adaptable to similar architectures by modifying `server.py`.
+The backend is designed to be compatible with [NVlabs/stylegan2-ada-pytorch](https://github.com/NVlabs/stylegan2-ada-pytorch). It should be adaptable to similar architectures by modifying `server.py`.
 
 You'll need [Node.js](https://nodejs.org/en/) to build the frontend.
 
